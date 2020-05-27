@@ -1,0 +1,160 @@
+/* Configurando o cabeçalho  */
+.sys_topbar {
+    
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color:  purple;
+
+    padding: 5px;
+    border-radius: 10px;
+    padding-bottom: 0px;
+    min-height: 50px;
+    z-index: 9999; 
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+.sys_sidbar {
+    border-radius: 10px;
+    position: fixed;
+    top: 50px; 
+    bottom: 0;
+    left: 0;
+    width: 210px;
+    margin-left: -211px;
+    z-index: 9998;
+    transition: margin-left 0.5s;
+    overflow-y: auto;
+    background-color: #414c47;
+    border-right: 1px solid #eaeaea;
+}
+
+.sys_titulo_pag {
+   margin: 0;
+   padding: 20px 0;
+   font-size: 1.5em;
+   color: #fff;
+}
+
+@media (min-width: 960px){
+    .sys_sidbar {
+        margin-left: 0px;
+    }
+    .sys_sidbar.is-toggled {
+        margin-left: -211px;
+    }
+    
+}
+
+@media (max-width: 960px){
+    .sys_sidbar.is-toggled {
+        margin-left: 0px;
+    }    
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+}
+
+.left_content {
+   margin-top: -8%;
+   transition: margin-left 0.5s;
+}
+
+@media (min-width: 960px){
+    .left_content {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .left_content.is-toggled {
+        margin-left: 0px;
+    } 
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.sys_toggle {
+    float: right;
+    line-height: 50px;
+    margin-right: 15px;
+    color :#dff0d8;
+    
+}
+
+/* menu */
+
+.sys_menu {
+    font-size: 1.1em;
+    color: #fff;
+    height: 41px;
+}
+
+.sys_menu > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sys_menu > ul a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+}
+
+.sys_menu > ul i {
+    margin-right: 6px;
+}
+
+.sys_menu > ul a:hover, .sys_menu > ul a:focus {
+    background-color: #dfdfdf;
+}
+
+#linha{
+    border: 2px;
+    width: 209px;
+    height: 2px;
+}
+
+.flot-chart{
+        display:block;
+        height: 400px;
+}
+
+.flot-content{
+    height:100%;
+    width:100%;
+}
+

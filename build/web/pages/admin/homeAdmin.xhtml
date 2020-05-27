@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+      >
+    <body>
+
+
+        <ui:composition template="../../WEB-INF/templates/templates.xhtml" >
+
+            <!--   <f:metadata>    
+             
+                <f:event type="preRenderView" listener="#{usuarioController.validaadm()}"/> 
+            </f:metadata>-->
+
+
+            <title>teste</title>
+            <h:outputStylesheet  name="../../resources/css/estilo.css"/>
+            <script>
+                //<![CDATA[
+
+
+                //]]>
+            </script>
+
+
+
+            <ui:define name="content" >
+
+                <h:form id="Pesquisa" class="form-inline"  enctype="multipart/form-data">
+                    <div class="panel-primary" >
+                        <div class="panel panel-heading" style="background: black; border-color: black;">
+                            <h3 class="panel-title">Consultar usuario</h3>
+                            <div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Nome:"
+                                                       for="nome"
+                                                       styleClass="control-label col-sm-2"/>
+                                        <div class="col-sm-2">
+                                            <h:inputText id="nome"
+                                                         value="#{usuarioController.nomebusca}"
+                                                         title="Nome do aluno para pesquisa"
+                                                         styleClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-sm-12">
+                                            <p:commandButton value="Pesquisa" action="#{usuarioController.listarnome()}"
+                                                             styleClass="btn btn-sucess" update="@form :formUsuario:dataUsuario"/>
+                                            <p:commandButton value="Limpa Pesquisa" action="#{usuarioController.listar()}"
+                                                             styleClass="btn btn-sucess" update="@form :formUsuario:dataUsuario"/>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <h:outputLabel value="CPF:"
+                                                       for="cpf"
+                                                       styleClass="control-label col-sm-2"/>
+                                        <div class="col-sm-2">
+                                            <h:inputText id="cpf"
+                                                         value="#{usuarioController.cpf}"
+                                                         title="Nome do aluno para pesquisa"
+                                                         styleClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-sm-12">
+                                            <p:commandButton value="Pesquisa cpf" action="#{usuarioController.listarcpf()}"
+                                                             styleClass="btn btn-sucess" update=":formUsuario:dataUsuario"/>
+                                            <p:commandButton value="Limpa Pesquisa" action="#{usuarioController.listar()}"
+                                                             styleClass="btn btn-sucess" update="@form :formUsuario:dataUsuario"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                </h:form>
+
+<h1>Usuários</h1>
+
+                <h:form id="formUsuario" enctype="multipart/form-data">
+
+
+
+                    <p:dataTable id="dataUsuario" value="#{usuarioController.lista}" 
+                                 var="usuario"  
+                                 style="margin-top: 20px;"
+                                 rows="5" paginatorAlwaysVisible="false"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="5,10,15"
+                                 lazy="true">
+                        <p:column headerText="Código perfil" >
+                            <h:outputText value="#{usuario.perfil.idPerfil}" style="text-align: center;"/>
+                        </p:column>
+
+                        <p:column headerText="Código" >
+                            <h:outputText value="#{usuario.idUsuario}" style="text-align: center;"/>
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{usuario.nome}"/>
+                        </p:column>
+
+                        <p:column headerText="E-Mail"  >
+                            <h:outputText value="#{usuario.email}" style="text-align: right;"/>
+                        </p:column>
+                        <p:column headerText="Sexo: "  >
+                            <h:outputText value="#{usuario.sexo}" style="text-align: right;"/>
+                        </p:column>
+                        <p:column headerText="Rg"  >
+                            <h:outputText value="#{usuario.rg}" />
+                        </p:column>
+
+                        <p:column headerText="Cpf"  >
+                            <h:outputText value="#{usuario.cpf}" />
+                        </p:column>
+                        <p:column headerText="Data"  >
+                            <h:outputText value="#{usuario.dataNascimento}" style="text-align: right;"/>
+                        </p:column>
+
+                        <p:column headerText="Telefone"  >
+                            <h:outputText value="#{usuario.telefone}" />
+                        </p:column>
+
+                        <p:column headerText="Celular"  >
+                            <h:outputText value="#{usuario.celular}" />
+                        </p:column>
+                        <p:column headerText="Ações">
+                            <p:commandLink immediate="true" action="#{anuncioController.listarPorDono()}"  update="@form :formAnuncio:dataAnuncio">
+                                <button class="btn btn-danger">
+                                    <img src="../../resources/imagem/search.png" width="20" height="20" alt="trash"/>
+                                </button>
+                                <f:setPropertyActionListener value="#{usuario}"
+                                                             target="#{anuncioController.usuarioselecionado}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+
+                                <f:ajax />
+                            </p:commandLink>
+                            <p:commandLink  immediate="true" onclick="PF('alterar').show();" update=":alter  ">
+                                <button class="btn btn-info">
+                                    <img src="../../resources/imagem/update.png" width="20" height="20" alt="trash"/>
+
+                                </button>
+                                <f:setPropertyActionListener value="#{usuario}"
+                                                             target="#{usuarioController.usuarioselecionado}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+                                <f:passThroughAttribute name="data-target" value="#ModalAluno"/>
+                                <f:ajax />
+                            </p:commandLink>
+                            <p:commandLink immediate="false"  onclick="PF('excluir').show();">
+                                <button class="btn btn-danger">
+                                    <img src="../../resources/imagem/trash.png" width="20" height="20" alt="trash"/>
+                                </button>
+                                <f:setPropertyActionListener value="#{usuario}"
+                                                             target="#{usuarioController.usuarioselecionado}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+                                <f:passThroughAttribute name="data-target" value="#ModalAluno"/>
+                                <f:ajax />
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <p:dialog header="Alterar Usuario" widgetVar="alterar" modal="true" height="auto">
+                    <h:form id="alter" enctype="multipart/form-data">
+                        <h:panelGrid id="panel1" style="margin: auto;" columns="2">
+                            <h:outputLabel value="Nome"/>
+                            <h:inputText class="campos" pt:placeholder="Nome" value="#{usuarioController.usuarioselecionado.nome}"/>
+
+                            <h:outputLabel value="Email"/>
+                            <h:inputText class="campos" pt:placeholder="Email" value="#{usuarioController.usuarioselecionado.email}"/>
+
+                            <h:outputLabel value="Senha"/>
+                            <h:inputText class="campos" pt:placeholder="Senha" value="#{usuarioController.usuarioselecionado.senha}"/>
+
+
+                            <h:outputLabel value="Rg"/>
+                            <h:inputText class="campos" pt:placeholder="Rg" value="#{usuarioController.usuarioselecionado.rg}"/>
+
+                            <h:outputLabel value="Cpf"/>
+                            <h:inputText class="campos" pt:placeholder="Cpf" value="#{usuarioController.usuarioselecionado.cpf}"/>
+
+                            <h:outputLabel value="Telefone"/>
+                            <h:inputText class="campos" pt:placeholder="Telefone" value="#{usuarioController.usuarioselecionado.telefone}"/>
+
+                            <h:outputLabel value="Celular"/>
+                            <h:inputText class="campos" pt:placeholder="Celular" value="#{usuarioController.usuarioselecionado.celular}"/>
+
+                            <h:outputLabel value="Data de nascimento"/>
+                            <p:calendar class="calendario" pt:placeholder="Data de Nascimento" value="#{usuarioController.usuarioselecionado.dataNascimento}" />
+
+                            <h:outputLabel value="Sexo"/>
+                            <p:selectOneRadio  value="#{usuarioController.usuario.sexo}">
+                                <f:selectItem itemValue="m" itemLabel="Masculino" />
+                                <f:selectItem itemValue="f" itemLabel="Feminino" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Bebe"/>
+                            <p:selectOneRadio  value="#{usuarioController.usuarioselecionado.perfil.bebe}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Fuma"/>
+                            <p:selectOneRadio  value="#{usuarioController.usuarioselecionado.perfil.fuma}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Chega de madrugada"/>
+                            <p:selectOneRadio  value="#{usuarioController.usuarioselecionado.perfil.chegaMadrugada}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Serviços domesticos"/>
+                            <p:selectOneRadio  value="#{usuarioController.usuarioselecionado.perfil.cozinhaLimpaCasa}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="FAz festas em casa"/>
+                            <p:selectOneRadio  value="#{usuarioController.usuarioselecionado.perfil.fazFestaCasa}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Solteiro"/>
+                            <p:selectOneRadio  value="#{usuarioController.usuarioselecionado.perfil.solteiro}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+
+                            <p:commandButton value="Sim" action="#{usuarioController.alterarUsuario()}"/>
+                            <p:commandButton value="Nao"  onclick="PF('alterar').hide()" />
+
+
+                        </h:panelGrid>
+
+                    </h:form>
+                </p:dialog > 
+
+                <p:dialog header="Exlcuir usuario" widgetVar="excluir" modal="true" height="auto">
+
+                    <p:commandButton value="Sim" action="#{usuarioController.deletarUsuario()}"/>
+                    <p:commandButton value="Nao" onclick="PF('excluir').hide()" />
+                </p:dialog>
+<h1>lista de anúncios de um usuário</h1>
+                <h:form id="formAnuncio" enctype="multipart/form-data">
+
+
+
+                    <p:dataTable id="dataAnuncio" value="#{anuncioController.lista}" 
+                                 var="anuncio"  
+                                 style="margin-top: 20px;"
+                                 rows="5" paginatorAlwaysVisible="false"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="5,10,15"
+                                 lazy="true">
+                        <p:column headerText="Código perfil"  style="width: 150px;">
+                            <h:outputText value="#{anuncio.perfil.idPerfil}" style="text-align: center;"/>
+                        </p:column>
+
+                        <p:column headerText="Código Usuario"  style="width: 150px;">
+                            <h:outputText value="#{anuncio.usuario.idUsuario}" style="text-align: center;"/>
+                        </p:column>
+
+                        <p:column headerText="Nome proprietário">
+                            <h:outputText value="#{anuncio.nomeProprietario}"/>
+                        </p:column>
+
+                        <p:column headerText="Rua"  style="width: 200px;">
+                            <h:outputText value="#{anuncio.rua}" style="text-align: right;"/>
+                        </p:column>
+
+                        <p:column headerText="Bairro"  >
+                            <h:outputText value="#{anuncio.bairro}" />
+                        </p:column>
+
+                        <p:column headerText="Estado"  >
+                            <h:outputText value="#{anuncio.estado}" />
+                        </p:column>
+                        <p:column headerText="Cidade"  style="width: 200px;">
+                            <h:outputText value="#{anuncio.cidade}" style="text-align: right;"/>
+                        </p:column>
+
+                        <p:column headerText="Descrição"  >
+                            <h:outputText value="#{anuncio.descricao}" />
+                        </p:column>
+
+                        <p:column headerText="Quantidade de vagas"  >
+                            <h:outputText value="#{anuncio.qtdVagas}" />
+                        </p:column>
+
+                        <p:column headerText="Valor do aluguel"  >
+                            <h:outputText value="#{anuncio.valorTotal}" />
+                        </p:column>
+
+                        <p:column headerText="Status"  >
+                            <h:outputText value="#{anuncio.status}" />
+                        </p:column>
+                        <p:column>
+                            <p:commandLink immediate="true" action="#{imagensController.listarPorAnuncio()}"  update="@form :formimg:dataimg">
+                                <button class="btn btn-danger">
+                                    <img src="../../resources/imagem/search.png" width="20" height="20" alt="trash"/>
+                                </button>
+                                <f:setPropertyActionListener value="#{anuncio}"
+                                                             target="#{imagensController.anuncioselecionado}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+
+                                <f:ajax />
+                            </p:commandLink>
+                            <p:commandLink immediate="false"  onclick="PF('excluiranuncio').show();">
+                                <button class="btn btn-danger">
+                                    <img src="../../resources/imagem/trash.png" width="20" height="20" alt="trash"/>
+                                </button>
+                                <f:setPropertyActionListener value="#{anuncio}"
+                                                             target="#{anuncioController.anuncioselecionado}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+                                <f:passThroughAttribute name="data-target" value="#ModalAluno"/>
+                                <f:ajax />
+                            </p:commandLink>
+                            <p:commandLink  immediate="true" onclick="PF('alteraranuncio').show();" update=":alteranun  ">
+                                <button class="btn btn-info">
+                                    <img src="../../resources/imagem/update.png" width="20" height="20" alt="trash"/>
+
+                                </button>
+                                <f:setPropertyActionListener value="#{anuncio}"
+                                                             target="#{anuncioController.anuncioselecionado}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+                                <f:passThroughAttribute name="data-target" value="#ModalAluno"/>
+                                <f:ajax />
+                            </p:commandLink>
+                                                        <p:commandLink immediate="false"  onclick="PF('adicionarimg').show();">
+                                <button class="btn btn-info">
+                                    <img src="../../resources/imagem/add.ico" width="20" height="20" alt="trash"/>
+                                </button>
+                                <f:setPropertyActionListener value="#{anuncio}"
+                                                             target="#{anuncioController.anuncioselecionado}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+                                <f:passThroughAttribute name="data-target" value="#ModalAluno"/>
+                                <f:ajax />
+                            </p:commandLink>
+                        </p:column>    
+                    </p:dataTable>
+                </h:form>                
+
+ <p:dialog  header="Adicionar imagem" widgetVar="adicionarimg" modal="true" height="auto">
+
+                    <h:form id="addimg" enctype="multipart/form-data">
+                        <h:panelGrid id="panel" style="margin: auto;" columns="2">
+                            <h:outputLabel value="Descrição imagem: "/>
+                            <h:inputText class="campos" pt:placeholder="Descrição" value="#{imagensController.img.descricaoImagem}"/>
+                            <h:outputLabel value="Arquivo: "/>
+                            <h:inputFile pt:type="file"  id="specialization" pt:placeholder="Specialization" class="dropselectsec" value="#{imagensController.file}" autocomplete="off"/>   
+                        <h:commandButton class="btn btn-default pull-left" value="Salvar" action="#{imagensController.salvarImagem()}"/>
+                        </h:panelGrid>
+                        
+
+                    </h:form>
+
+                </p:dialog>
+                <p:dialog  header="Exlcuir imagem" widgetVar="excluirimg" modal="true" height="auto">
+
+                    <h:form enctype="multipart/form-data">
+                        <p:commandButton value="Sim" action="#{imagensController.deletar()}"/>
+                        <p:commandButton value="Nao" onclick="PF('excluirimg').hide()" />
+
+                        <!-- <h:panelGrid class="radio" columns="1">
+         
+                             <h:outputLabel class="texto" value="Foto: "/>
+                             <h:inputFile  pt:placeholder="foto" value="#{imagensController.file}"/>
+              
+                         </h:panelGrid>
+                         <h:commandButton style="margin-bottom: 10px; width: 80%; margin-left: 10%;color:  white;   background-color: #357ae8; border: none; height: 40px; margin-top: 30px;" value="Cadastrar" actionListener="#{imagensController}"/>
+                         <h:commandButton style="margin-bottom: 10px; width: 80%; margin-left: 10%;color:  white;   background-color: #357ae8; border: none; height: 40px; margin-top: 5px;" value="Voltar" actionListener="#{navega}"/>
+                        -->
+                    </h:form>
+
+                </p:dialog>
+
+
+                <p:dialog  header="Exlcuir anuncio" widgetVar="excluiranuncio" modal="true" height="auto">
+
+                    <h:form enctype="multipart/form-data">
+                        <p:commandButton value="Sim" action="#{anuncioController.excluiranuncio()}"/>
+                        <p:commandButton value="Nao" onclick="PF('excluiranuncio').hide()" />
+
+                        <!-- <h:panelGrid class="radio" columns="1">
+         
+                             <h:outputLabel class="texto" value="Foto: "/>
+                             <h:inputFile  pt:placeholder="foto" value="#{imagensController.file}"/>
+              
+                         </h:panelGrid>
+                         <h:commandButton style="margin-bottom: 10px; width: 80%; margin-left: 10%;color:  white;   background-color: #357ae8; border: none; height: 40px; margin-top: 30px;" value="Cadastrar" actionListener="#{imagensController}"/>
+                         <h:commandButton style="margin-bottom: 10px; width: 80%; margin-left: 10%;color:  white;   background-color: #357ae8; border: none; height: 40px; margin-top: 5px;" value="Voltar" actionListener="#{navega}"/>
+                        -->
+                    </h:form>
+
+                </p:dialog>
+
+                <p:dialog  header="Alterar anuncio" widgetVar="alteraranuncio" modal="true" height="auto">
+
+                    <h:form id="alteranun" enctype="multipart/form-data">
+                        <h:panelGrid id="panel1" style="margin: auto;" columns="2">
+                            <h:outputLabel value="Nome do proprietário"/>
+                            <h:inputText class="campos" pt:placeholder="Nome" value="#{anuncioController.anuncioselecionado.nomeProprietario}"/>
+
+                            <h:outputLabel value="Rua"/>
+                            <h:inputText class="campos" pt:placeholder="Rua" value="#{anuncioController.anuncioselecionado.rua}"/>
+
+                            <h:outputLabel value="Bairro"/>
+                            <h:inputText class="campos" pt:placeholder="Bairro" value="#{anuncioController.anuncioselecionado.bairro}"/>
+
+                            <h:outputLabel value="Estado"/>
+                            <h:inputText class="campos" pt:placeholder="Estado" value="#{anuncioController.anuncioselecionado.estado}"/>
+
+                            <h:outputLabel value="Cidade"/>
+                            <h:inputText class="campos" pt:placeholder="Cidade" value="#{anuncioController.anuncioselecionado.cidade}"/>
+                            <h:outputLabel value="Descrição"/>
+
+                            <h:inputText class="campos" pt:placeholder="descrição" value="#{anuncioController.anuncioselecionado.descricao}"/>
+
+                            <h:outputLabel value="Quantidade de vagas"/>
+                            <h:inputText class="campos" pt:placeholder="Qtd de vagas" value="#{anuncioController.anuncioselecionado.qtdVagas}"/>
+                            <h:outputLabel value="Valor total do aluguel"/>
+
+                            <h:inputText class="campos" pt:placeholder="VAlor" value="#{anuncioController.anuncioselecionado.valorTotal}" />
+                            <h:outputLabel value="Status do anuncio"/>
+                            <h:inputText class="campos" pt:placeholder="status" value="#{anuncioController.anuncioselecionado.status}" />
+                            <h:outputLabel value="Bebe"/>
+                            <p:selectOneRadio  value="#{anuncioController.anuncioselecionado.perfil.bebe}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Fuma"/>
+                            <p:selectOneRadio  value="#{anuncioController.anuncioselecionado.perfil.fuma}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Chega de madrugada"/>
+                            <p:selectOneRadio  value="#{anuncioController.anuncioselecionado.perfil.chegaMadrugada}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Serviços domésticos"/>
+                            <p:selectOneRadio  value="#{anuncioController.anuncioselecionado.perfil.cozinhaLimpaCasa}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="FAz festa em casa"/>
+                            <p:selectOneRadio  value="#{anuncioController.anuncioselecionado.perfil.fazFestaCasa}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+
+                            <h:outputLabel value="Solteiro"/>
+                            <p:selectOneRadio  value="#{anuncioController.anuncioselecionado.perfil.solteiro}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <p:commandButton value="Sim" action="#{anuncioController.alteraranuncio()}"/>
+                            <p:commandButton value="Nao"  onclick="PF('alteraranunvio').hide()" />
+
+
+                        </h:panelGrid>
+
+                    </h:form>
+
+                </p:dialog>
+
+                <h1>Imagens do anúncio</h1>
+                <h:form id="formimg" enctype="multipart/form-data">
+
+
+
+                    <p:dataTable id="dataimg" value="#{imagensController.lista}" 
+                                 var="img"  
+                                 style="margin-top: 20px;"
+                                 rows="5" paginatorAlwaysVisible="false"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 rowsPerPageTemplate="5,10,15"
+                                 lazy="true">
+                        <p:column headerText="Código foto"  style="width: 150px;">
+                            <h:outputText value="#{img.idImages}" style="text-align: center;"/>
+                        </p:column>
+
+                        <p:column headerText="Código do anuncio"  style="width: 150px;">
+                            <h:outputText value="#{img.anuncio.idAnuncio}" style="text-align: center;"/>
+                        </p:column>
+
+                        <p:column headerText="Nome proprietário">
+                            <h:outputText value="#{img.anuncio.usuario.nome}"/>
+                        </p:column>
+
+                        <p:column headerText="Descrição"  style="width: 200px;">
+                            <h:outputText value="#{img.descricaoImagem}" style="text-align: right;"/>
+                        </p:column>
+    
+
+                        <p:column>
+                            <p:commandLink immediate="false"  onclick="PF('excluirimg').show();">
+                                <button class="btn btn-danger">
+                                    <img src="../../resources/imagem/trash.png" width="20" height="20" alt="trash"/>
+                                </button>
+                                <f:setPropertyActionListener value="#{img}"
+                                                             target="#{imagensController.imgselecionada}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+                                <f:passThroughAttribute name="data-target" value="#ModalAluno"/>
+                                <f:ajax />
+                            </p:commandLink>
+                           
+                        </p:column>    
+                    </p:dataTable>
+                </h:form>  
+
+
+
+
+            </ui:define>
+        </ui:composition>
+
+
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2017 18:21:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Contrato" table="contrato" catalog="moradiadb">
+        <id name="idContrato" type="java.lang.Integer">
+            <column name="idContrato" />
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="usuario" class="entity.Usuario" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="dataContratacao" type="date">
+            <column name="Data_Contratacao" length="10" not-null="true" />
+        </property>
+        <property name="dataTerminoContrato" type="date">
+            <column name="Data_Termino_Contrato" length="10" not-null="true" />
+        </property>
+        <property name="valorPago" type="double">
+            <column name="Valor_Pago" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

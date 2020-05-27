@@ -1,0 +1,300 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+
+    <div class="navbar-wrapper">
+        <div class="container-fluid">
+            <nav class="navbar navbar-fixed-top">
+                <h:form>  <div class="container">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#"></a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="" ><img src="../../resources/imagem/logo.png" style="width: 250px; margin-right: 5px;margin-top: 8px;"/></li>
+                                <li class=" dropdown" jsf:rendered="#{usuarioController.logado != null}">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Anúncios <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li class=" dropdown">
+                                            <a jsf:action="#{anuncioController.listarPorestado()}" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >Lista</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li jsf:rendered="#{usuarioController.logado != null}"><a jsf:action="#{vagaController.navegalistaaceite()}">Lista de Vagas</a></li>
+                                <li class=" dropdown" jsf:rendered="#{usuarioController.logado != null}">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meus anúncios <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a jsf:action="#{anuncioController.listarPorDonoLogado()}">Meus anúncios</a></li>
+                                        <li><a href="#addanuncio" data-toggle="modal">Adicionar anúncio</a></li>
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+
+                            <ul class="nav navbar-nav pull-right" jsf:rendered="#{usuarioController.logado != null}">
+                                <li> 
+                                    <p:graphicImage style="                width: 50px;
+                                                    height: 50px;
+                                                    line-height: 50px;
+                                                    display: inline-block;
+                                                    border-radius: 100px;
+                                                    background: #fff;
+                                                    border: 2px solid #e0e0e0;
+                                                    z-index: 2;
+
+                                                    left: 0;
+                                                    text-align: center;
+                                                    font-size: 25px;" value="#{usuarioController.imagem}"/>
+                                </li>
+                                <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#{usuarioController.logado.nome} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#senha" data-toggle="modal">Mudar senha</a></li>
+                                        <li><a href="#usuario" data-toggle="modal">Alterar Usuario</a></li>
+                                        <li><a jsf:rendered="#{usuarioController.logado.permissao eq true}" jsf:action="#{navega.admin()}">Area do administrado</a></li>
+                                    </ul>
+                                </li>
+                                <li class="form-inline"><a jsf:action="#{usuarioController.logout()}">Logout</a></li>
+                               
+                            </ul>
+                            <ul class="nav navbar-nav pull-right">
+                                <li class="form-inline"><a jsf:rendered="#{usuarioController.logado eq null}" jsf:action="#{navega.voltarlogin()}">Efetuar Login</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    
+                    
+
+                    <div >
+                        
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="senha" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header modal-header-primary" style="border: solid;  text-align: center; background-color: black; color: white; border-color: white;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h1><i class="glyphicon glyphicon-thumbs-up"></i> Alterar senha</h1>
+                                </div><h:form>
+                                    <div class="modal-body">
+
+                                        <label>Senha antiga</label>
+                                        <p:password pt:type="password" class="form-control"  pt:placeholder="Senha antiga" value="#{usuarioController.senha1}"/>
+                                        <label>Nova senha</label>
+                                        <p:password pt:type="password" class="form-control"  requiredMessage="campo senha não pode ser nulo" validatorMessage="Campo nova senha não corresponde ao campo confirmar nova senha" match="cnfsenha" pt:placeholder="Nova senha" value="#{usuarioController.senha2}"/>
+                                        <label>Confirmar nova senha</label>
+                                        <p:password pt:type="password" class="form-control"  requiredMessage="campo senha não pode ser nulo"  id="cnfsenha" pt:placeholder="Confirma senha" value="#{usuarioController.senha3}"/>
+
+                                    </div>
+                                    <div class="modal-footer" style="width: 230px; margin: auto; ">
+                                        <p:commandButton class="btn btn-default pull-left" value="Salvar" action="#{usuarioController.alterarsenha()}"/>
+                                        <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default pull-left" data-dismiss="modal"><span class="ui-button-text ui-c">Fechar</span></button>
+                                        
+                                    </div></h:form>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    <!-- Modal -->
+                    </h:form>
+                    <h:form>
+                    <!-- Modal -->
+                    <div class="modal fade" id="usuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header modal-header-primary" style="border: solid;  text-align: center; background-color: black; color: white; border-color: white;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h1> Alterar dados da conta</h1>
+                                </div>                                    
+                                <div class="modal-body">
+                                    
+                                    <h:panelGrid id="panel1" style="margin: auto;" columns="2">
+                                        <h:outputLabel value="Nome"/>
+                                        <h:inputText required="true"  class="campos" pt:placeholder="Nome" requiredMessage="Nome não pode ser nulo" value="#{usuarioController.logado.nome}"/>
+
+                                        <h:outputLabel value="Email"/>
+                                        <h:inputText class="campos" required="true" requiredMessage="Campo email não pode ser nulo" pt:placeholder="Email" value="#{usuarioController.logado.email}"/>
+
+                                        <h:outputLabel value="Senha"/>
+                                        <h:inputText class="campos" pt:placeholder="Senha" value="#{usuarioController.logado.senha}"/>
+
+
+                                        <h:outputLabel value="Rg"/>
+                                        <h:inputText class="campos" pt:placeholder="Rg" value="#{usuarioController.logado.rg}"/>
+
+                                        <h:outputLabel value="Cpf"/>
+                                        <h:inputText class="campos" pt:placeholder="Cpf" value="#{usuarioController.logado.cpf}"/>
+
+                                        <h:outputLabel value="Telefone"/>
+                                        <h:inputText class="campos" pt:placeholder="Telefone" value="#{usuarioController.logado.telefone}"/>
+
+                                        <h:outputLabel value="Celular"/>
+                                        <h:inputText class="campos" pt:placeholder="Celular" value="#{usuarioController.logado.celular}"/>
+
+                                        <h:outputLabel value="Data de nascimento"/>
+                                        <p:calendar class="calendario" pt:placeholder="Data de Nascimento" value="#{usuarioController.logado.dataNascimento}" />
+
+
+                                        <h:outputLabel value="Bebe"/>
+                                        <h:selectOneRadio  value="#{usuarioController.logado.sexo}">
+                                            <f:selectItem itemValue="m" itemLabel="masculino" />
+                                            <f:selectItem itemValue="f" itemLabel="feminino" />
+
+                                        </h:selectOneRadio>
+
+                                        <h:outputLabel value="Bebe"/>
+                                        <h:selectOneRadio  value="#{usuarioController.logado.perfil.bebe}">
+                                            <f:selectItem itemValue="true" itemLabel="sim" />
+                                            <f:selectItem itemValue="false" itemLabel="não" />
+
+                                        </h:selectOneRadio>
+                                        <h:outputLabel value="Fuma"/>
+                                        <h:selectOneRadio  value="#{usuarioController.logado.perfil.fuma}">
+                                            <f:selectItem itemValue="true" itemLabel="sim" />
+                                            <f:selectItem itemValue="false" itemLabel="não" />
+
+                                        </h:selectOneRadio>
+                                        <h:outputLabel value="Chega de madrugada"/>
+                                        <h:selectOneRadio  value="#{usuarioController.logado.perfil.chegaMadrugada}">
+                                            <f:selectItem itemValue="true" itemLabel="sim" />
+                                            <f:selectItem itemValue="false" itemLabel="não" />
+
+                                        </h:selectOneRadio>
+                                        <h:outputLabel value="Serviços domesticos"/>
+                                        <h:selectOneRadio  value="#{usuarioController.logado.perfil.cozinhaLimpaCasa}">
+                                            <f:selectItem itemValue="true" itemLabel="sim" />
+                                            <f:selectItem itemValue="false" itemLabel="não" />
+
+                                        </h:selectOneRadio>
+                                        <h:outputLabel value="FAz festas em casa"/>
+                                        <h:selectOneRadio  value="#{usuarioController.logado.perfil.fazFestaCasa}">
+                                            <f:selectItem itemValue="true" itemLabel="sim" />
+                                            <f:selectItem itemValue="false" itemLabel="não" />
+
+                                        </h:selectOneRadio>
+                                        <h:outputLabel value="Solteiro"/>
+                                        <h:selectOneRadio  value="#{usuarioController.logado.perfil.solteiro}">
+                                            <f:selectItem itemValue="true" itemLabel="sim" />
+                                            <f:selectItem itemValue="false" itemLabel="não" />
+
+                                        </h:selectOneRadio>
+
+                                    </h:panelGrid>
+                                </div>
+                                <div class="modal-footer" style="width: 230px; margin: auto; ">
+                                    <p:commandButton class="btn btn-default pull-left" value="Salvar" actionListener="#{usuarioController.alterarUsuariologado()}"/>
+                                    <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default pull-left" data-dismiss="modal"><span class="ui-button-text ui-c">Fechar</span></button>
+
+                                </div>
+
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    <!-- Modal -->
+                </h:form>
+            </nav>
+        </div>
+    </div>
+<h:form>
+                    <!-- Modal -->
+                    <div class="modal fade" id="addanuncio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header modal-header-primary" style="border: solid;  text-align: center; background-color: black; color: white; border-color: white;">
+                                    <button type="button" style="color:white" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h1><i class="center"></i> Adicionar anúncio</h1>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <h:panelGrid id="panel1" style="margin: auto;" columns="2">
+                                        <h:outputLabel value="Rua"/>
+                                        <h:inputText class="campos" pt:placeholder="Nome" required="true" requiredMessage="Campo Rua não pode ser nulo" value="#{anuncioController.anuncio.rua}"/>
+                                        <h:outputLabel value="Bairro"/>
+                                        <h:inputText class="campos" pt:placeholder="Bairro" required="true" requiredMessage="Campo Bairro não pode ser nulo" value="#{anuncioController.anuncio.bairro}"/>
+
+                                        <h:outputLabel value="Estado"/>
+                                        <h:inputText class="campos" pt:placeholder="Estado" required="true" requiredMessage="Campo Estado não pode ser nulo" value="#{anuncioController.anuncio.estado}"/>
+
+
+                                        <h:outputLabel value="Cidade"/>
+                                        <h:inputText class="campos" pt:placeholder="Cidade" required="true" requiredMessage="Campo Cidade não pode ser nulo" value="#{anuncioController.anuncio.cidade}"/>
+
+                                        <h:outputLabel value="Descrição"/>
+                                        <h:inputText class="campos" pt:placeholder="Descrição" value="#{anuncioController.anuncio.descricao}"/>
+
+                                        <h:outputLabel value="Vagas"/>
+                                        <h:inputText class="campos" pt:placeholder="Vagas" required="true" requiredMessage="Campo Vagas não pode ser nulo" value="#{anuncioController.anuncio.qtdVagas}"/>
+
+                                        <h:outputLabel value="Valor"/>
+                                        <h:inputText class="campos" pt:placeholder="Celular" required="true" requiredMessage="Campo Valor não pode ser nulo" value="#{anuncioController.anuncio.valorTotal}"/>
+
+                                         <h:outputLabel value="Bebe"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.bebe}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Fuma"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.fuma}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Chega de madrugada"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.chegaMadrugada}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Serviços domesticos"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.cozinhaLimpaCasa}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="FAz festas em casa"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.fazFestaCasa}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Solteiro"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.solteiro}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+
+                                    </h:panelGrid>
+                                    
+                                </div>
+                                    <div class="modal-footer" style="width: 230px; margin: auto; ">
+                                    
+                                    <p:commandButton class="btn btn-default pull-left" value="Salvar" action="#{anuncioController.salvarAnuncio()}"/>
+                                    <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn btn-default pull-left" data-dismiss="modal"><span class="ui-button-text ui-c"> Fechar</span></button>
+                                    
+                                </div>
+                                 
+                            </div><!-- /.modal-content -->
+                      
+                            </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    <!-- Modal -->
+</h:form> 
+
+                    <p:messages id="alteraperfil" showDetail="true" autoUpdate="true" class="zoomIn"/>
+</ui:composition>

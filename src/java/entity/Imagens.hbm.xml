@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2017 18:21:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Imagens" table="imagens" catalog="moradiadb">
+        <id name="idImages" type="java.lang.Integer">
+            <column name="idImages" />
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="anuncio" class="entity.Anuncio" fetch="select">
+            <column name="Anuncio_idAnuncio" not-null="true" />
+        </many-to-one>
+        <property name="imagem" type="binary">
+            <column name="Imagem" />
+        </property>
+        <property name="descricaoImagem" type="string">
+            <column name="Descricao_imagem" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

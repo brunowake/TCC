@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+                template="../../WEB-INF/templates/templates.xhtml">
+
+
+
+
+    <title>teste</title>
+    <h:outputStylesheet  name="../../resources/css/estilo.css"/>
+    <script>
+//<![CDATA[
+
+
+//]]>
+    </script>
+
+
+
+    <ui:define name="content" >
+        <div    style=" background: url(../..//resources/imagem/livro1.jpg) center center no-repeat ;  
+           
+           -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;">
+        <div class="usuarioAlinhamento">
+
+            <p class="tituloCadastro">Cadastro de usuário</p>
+
+            <h:form enctype="multipart/form-data">
+
+                <h:panelGrid style="margin: auto;" columns="1">
+                    <h:inputText class="campos" pt:placeholder="Nome" value="#{usuarioController.usuario.nome}"/>
+
+
+                    <h:inputText class="campos" pt:placeholder="Email" value="#{usuarioController.usuario.email}"/>
+
+
+                    <p:password class="campos" pt:placeholder="Senha" id="pw1"  match="pw2" required="true" feedback="true" value="#{usuarioController.usuario.senha}"/>
+                    <p:password class="campos" pt:placeholder="Confirmar Senha" rendered="true" feedback="true" id="pw2" value="#{usuarioController.usuario.senha}"/>
+
+
+                    <h:inputText class="campos" pt:placeholder="Rg" value="#{usuarioController.usuario.rg}"/>
+
+
+                    <h:inputText class="campos" pt:placeholder="Cpf" value="#{usuarioController.usuario.cpf}"/>
+
+
+                    <h:inputText class="campos" pt:placeholder="Telefone" value="#{usuarioController.usuario.telefone}"/>
+
+
+                    <h:inputText class="campos" pt:placeholder="Celular" value="#{usuarioController.usuario.celular}"/>
+
+
+                    <p:calendar class="calendario" pt:placeholder="Data de Nascimento" value="#{usuarioController.usuario.dataNascimento}" />
+
+
+
+
+
+
+                </h:panelGrid>
+                
+                <p class="tituloCadastro" style="font-size: 2em;">Perfil</p>
+                   <br/> 
+                <h:panelGrid class="radio" columns="1">
+
+                    <h:outputLabel class="texto" value="Foto: "/>
+                    <h:inputFile  pt:placeholder="foto" value="#{usuarioController.file}"/>
+                    <h:outputLabel  class="texto" value="Sexo: "/>
+                    <h:selectOneRadio  value="#{usuarioController.usuario.sexo}">
+                        <f:selectItem itemValue="m" itemLabel="Masculino" />
+                        <f:selectItem itemValue="f" itemLabel="Feminino" />
+
+                    </h:selectOneRadio>
+                    <h:outputLabel  class="texto" value="bebe: "/>
+                    <h:selectOneRadio value="#{usuarioController.perfil.bebe}">
+                        <f:selectItem itemValue="true" itemLabel="Sim" />
+                        <f:selectItem itemValue="false" itemLabel="Nao" />
+
+                    </h:selectOneRadio>
+
+                    <h:outputLabel  class="texto" value="Chega de madrugada"/>
+                    <h:selectOneRadio value="#{usuarioController.perfil.chegaMadrugada}">
+                        <f:selectItem itemValue="true" itemLabel="Sim" />
+                        <f:selectItem itemValue="false" itemLabel="Nao" />
+
+                    </h:selectOneRadio>
+
+                    <h:outputLabel  class="texto" value="Limpa a casa: "/>
+                    <h:selectOneRadio value="#{usuarioController.perfil.cozinhaLimpaCasa}">
+                        <f:selectItem itemValue="true" itemLabel="Sim" />
+                        <f:selectItem itemValue="false" itemLabel="Nao" />
+
+                    </h:selectOneRadio>
+
+                    <h:outputLabel  class="texto" value="Faz festa em casa: "/>
+                    <h:selectOneRadio value="#{usuarioController.perfil.fazFestaCasa}">
+                        <f:selectItem itemValue="true" itemLabel="Sim" />
+                        <f:selectItem itemValue="false" itemLabel="Nao" />
+
+                    </h:selectOneRadio>
+
+                    <h:outputLabel  class="texto" value="Fuma: "/>
+                    <h:selectOneRadio value="#{usuarioController.perfil.fuma}">
+                        <f:selectItem itemValue="true" itemLabel="Sim" />
+                        <f:selectItem itemValue="false" itemLabel="Nao" />
+
+                    </h:selectOneRadio>
+                    <h:outputLabel  class="texto" value="Solteiro: "/>
+                    <h:selectOneRadio value="#{usuarioController.perfil.solteiro}">
+                        <f:selectItem itemValue="true" itemLabel="Sim" />
+                        <f:selectItem itemValue="false" itemLabel="Nao" />
+                    </h:selectOneRadio>
+                </h:panelGrid>
+                <h:commandButton style="margin-bottom: 10px; width: 80%; margin-left: 10%;color:  white;   background-color: #357ae8; border: none; height: 40px; margin-top: 30px;" value="Cadastrar" actionListener="#{usuarioController.salvarUsuario()}"/>
+                <h:commandButton style="margin-bottom: 10px; width: 80%; margin-left: 10%;color:  white;   background-color: #357ae8; border: none; height: 40px; margin-top: 5px;" value="Voltar" actionListener="#{navega.voltarlogin()}"/>
+            </h:form>
+
+
+
+            
+   
+        </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+

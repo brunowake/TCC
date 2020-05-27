@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08/06/2017, 19:20:18
+    Author     : bruno
+*/
+
+
+.calendario > input {
+    margin-top: 5px;
+    width: 292px;
+    height: 25px;
+    -webkit-box-shadow: inset   1px 1px  #357ae8;
+    -moz-box-shadow:inset 0   1px 1px  #357ae8;
+    box-shadow: inset 0  1px  1px  #357ae8;
+    border-radius: 0px;
+    text-align: center;
+    border: none !important;
+}
+
+.campos{
+
+    margin-top: 5px;
+    border: none;
+    -webkit-box-shadow: inset 0  1px  1px  #357ae8;
+    -moz-box-shadow:inset 0 1px 1px  #357ae8;
+    box-shadow: inset 0 1px 1px  #357ae8;
+    width: 300px;
+    height: 25px;
+    text-align: center;
+}
+
+.usuarioAlinhamento{
+    margin: auto;
+    width: 400px;
+    background-color:  #F7F7F7;
+}
+
+.tituloCadastro{
+    font-family: inherit;
+    font-size:  3em;
+    text-align: center;
+    margin: auto;
+}
+
+.texto{
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+.radio{
+    margin: auto;
+    text-align: center;
+}
+
+.radio > tbody > tr > td > table {
+    background-color: white;
+    border: none;
+    -webkit-box-shadow: inset 0  1px 1px  #357ae8;
+    -moz-box-shadow:inset 0 1px 1px  #357ae8;
+    box-shadow: inset 0 1px 1px  #357ae8;
+    width: 300px;
+    height: 25px;
+    margin: auto;
+}
+.radio > tbody > tr > td > input {
+    background-color: white;
+    border: none;
+    -webkit-box-shadow: inset 0  1px 1px   #357ae8;
+    -moz-box-shadow:inset 0 1px 1px  #357ae8;
+    box-shadow: inset 0 1px 1px #357ae8;
+    width: 300px;
+    height: 25px;
+    margin: auto;
+}

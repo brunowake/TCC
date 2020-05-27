@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2017 18:21:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.LogLogin" table="log_login" catalog="moradiadb">
+        <id name="idlog" type="java.lang.Integer">
+            <column name="idlog" />
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="usuario" class="entity.Usuario" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="dataLogin" type="date">
+            <column name="Data_Login" length="10" not-null="true" />
+        </property>
+        <property name="dataLoggout" type="date">
+            <column name="Data_loggout" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

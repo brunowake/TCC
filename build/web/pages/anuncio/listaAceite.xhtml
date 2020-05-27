@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+                template="../../WEB-INF/templates/templates.xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:define name="content">
+              
+        
+        
+        <h:form>
+            <h1>Anúncios que tenho interesse</h1>
+            <p:dataTable id="dataUsuario" value="#{vagaController.listavaga}" 
+                         var="vaga"  
+                         style="margin-top: 20px;"
+                         rows="5" paginatorAlwaysVisible="false"
+                         paginator="true"
+                         paginatorPosition="bottom"
+                         rowsPerPageTemplate="5,10,15"
+                         lazy="true">
+                <p:column headerText="Nome do interessado" >
+                    <h:outputText value="#{vaga.usuario.nome}" style="text-align: center;"/>
+                </p:column>
+
+                <p:column headerText="Anunciante" >
+                    <h:outputText value="#{vaga.anuncio.nomeProprietario}" style="text-align: center;"/>
+                </p:column>
+
+                <p:column headerText="aceite">
+                    <h:outputText value="Aguardando resultado" rendered="#{vaga.aceite eq false and vaga.obsAceite == null}"/>
+                    <h:outputText value="Aceito" rendered="#{vaga.aceite eq true}"/>
+                    <h:outputText value="Recusado" rendered="#{vaga.aceite eq false and vaga.obsAceite != null}"/>
+                </p:column>
+
+                <p:column headerText="Id vaga"  >
+                    <h:outputText value="#{vaga.idAnuncioVaga}" style="text-align: right;"/>
+                </p:column>
+                <p:column headerText="Observação"  >
+                    <h:outputText value="#{vaga.obsAceite}" style="text-align: right;"/>
+                </p:column>
+                <p:column headerText="Ver telefone"  >
+                    <p:commandLink rendered="#{vaga.aceite eq true}" immediate="true" onclick="PF('telefone').show();" update=":telefone">
+                        <button class="btn btn-danger">
+                            <img src="../../resources/imagem/search.png" width="20" height="20" alt="trash"/>
+                        </button>
+                        <f:setPropertyActionListener value="#{vaga}"
+                                                     target="#{vagaController.vagaselecionada}" />
+                        <f:passThroughAttribute name="data-toggle" value="modal" />
+
+                        <f:ajax />
+                    </p:commandLink>
+                </p:column>            
+
+
+            </p:dataTable>
+
+        </h:form>
+        <p:dialog header="Telefone " widgetVar="telefone" modal="true" height="auto">
+            <h:form id="telefone">
+                <h:panelGrid id="panel1" style="margin: auto;width: 200px;" columns="2">
+                    <h:outputLabel value="Celular"/>
+                    <h:outputText value="#{vagaController.vagaselecionada.anuncio.usuario.celular}" style="text-align: center;"/>
+                    <h:outputLabel value="Telefone"/>
+                    <h:outputText value="#{vagaController.vagaselecionada.anuncio.usuario.telefone}" style="text-align: center;"/>
+                </h:panelGrid>
+
+            </h:form>
+        </p:dialog>
+        
+        
+                <h:form>
+            <h1>Meus anúncios </h1>
+            <p:dataTable id="dataUsuario" value="#{vagaController.listainteressados}" 
+                         var="vaga2"  
+                         style="margin-top: 20px;"
+                         rows="5" paginatorAlwaysVisible="false"
+                         paginator="true"
+                         paginatorPosition="bottom"
+                         rowsPerPageTemplate="5,10,15"
+                         lazy="true">
+                <p:column headerText="Nome do interessado" >
+                    <h:outputText value="#{vaga2.usuario.nome}" style="text-align: center;"/>
+                </p:column>
+
+                <p:column headerText="Anunciante" >
+                    <h:outputText value="#{vaga2.anuncio.nomeProprietario}" style="text-align: center;"/>
+                </p:column>
+                <p:column headerText="aceite" >
+                    <h:outputText value="#{vaga2.aceite}" style="text-align: center;"/>
+                </p:column>
+
+
+                <p:column headerText="Id vaga"  >
+                    <h:outputText value="#{vaga2.idAnuncioVaga}" style="text-align: right;"/>
+                </p:column>
+
+                        <p:column headerText="Ações">
+                            <p:commandLink immediate="true" onclick="PF('perf').show();" update=":perf"  >
+                                <button class="btn btn-info">
+                                    <img src="../../resources/imagem/search.png" width="20" height="20" alt="trash"/>
+                                </button>
+                                <f:setPropertyActionListener value="#{vaga2}"
+                                                             target="#{vagaController.vagaselecionada}" />
+                                <f:passThroughAttribute name="data-toggle" value="modal" />
+
+                                <f:ajax />
+                            </p:commandLink>
+                            <p:commandLink  immediate="true" onclick="PF('aceitar').show();" >
+                                <button class="btn btn-info">
+                                    <img src="../../resources/imagem/yes.png" width="20" height="20" alt="yes"/>
+
+                                </button>
+                                <f:setPropertyActionListener value="#{vaga2}"
+                                                             target="#{vagaController.vagaselecionada}" />
+
+                                <f:ajax />
+                            </p:commandLink>
+                            <p:commandLink immediate="false"   onclick="PF('recusar').show();">
+                                <button class="btn btn-danger">
+                                    <img src="../../resources/imagem/x.png" width="20" height="20" alt="trash"/>
+                                </button>
+                                <f:setPropertyActionListener value="#{vaga2}"
+                                                             target="#{vagaController.vagaselecionada}" />
+                                <f:ajax />
+                            </p:commandLink>
+                        </p:column>         
+
+
+            </p:dataTable>
+
+        </h:form>
+        <p:dialog header="Deseja aceitar interesse ? " widgetVar="aceitar" modal="true"  >     
+            <h:form>
+            <h3>Observação: </h3>
+            <h:inputText value="#{vagaController.obs}" style="width: 250px; height: 60px;"/>
+            <br/>
+            <p:commandButton value="Sim" action="#{vagaController.aceitar()}" onclick="PF('aceitar').hide();"/>
+            <p:commandButton value="Não" onclick="PF('aceitar').hide();" />
+                
+
+            </h:form>
+        </p:dialog>
+        
+        <p:dialog header="DEseja recusar Interessado ?" widgetVar="recusar" modal="true" height="auto" width="auto">
+            <h:form>
+                <h3>Observação: </h3>
+            <h:inputText value="#{vagaController.obs}" style="width: 250px; height: 60px;"/>
+            <br/>
+            <p:commandButton value="Sim" action="#{vagaController.deletarVaga()}" onclick="PF('recusar').hide();" />
+            <p:commandButton value="Não" onclick="PF('recusar').hide();" />
+            </h:form>
+        </p:dialog>
+        
+        <p:dialog header="Perfil Interessado " widgetVar="perf" modal="true" height="auto" width="auto">
+            <h:form id="perf">
+                <h:panelGrid id="panel1" style="margin: auto;width: 400px;" columns="2">
+                   <h:outputLabel value="Fuma"/>             
+                        <img src="../../resources/imagem/yes.png" width="30" height="30" alt="yes" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.fuma eq true}"/>
+                        <img src="../../resources/imagem/x.png" width="30" height="30" alt="x" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.fuma eq false}"/>
+                   <h:outputLabel value="Bebe"/>            
+                        <img src="../../resources/imagem/yes.png" width="30" height="30" alt="yes" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.bebe eq true}" />
+                        <img src="../../resources/imagem/x.png" width="30" height="30" alt="x" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.bebe eq false}"/>
+                 
+                   <h:outputLabel value="Chega de madrugada"/>             
+                        <img src="../../resources/imagem/yes.png" width="30" height="30" alt="yes" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.chegaMadrugada eq true}"/>
+                        <img src="../../resources/imagem/x.png" width="30" height="30" alt="x" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.chegaMadrugada eq false}"/>
+                  
+                    <h:outputLabel value="Solteiro"/>           
+                        <img src="../../resources/imagem/yes.png" width="30" height="30" alt="yes" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.solteiro eq true}"/>
+                        <img src="../../resources/imagem/x.png" width="30" height="30" alt="x"  jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.solteiro eq false}"/>
+                    
+                    <h:outputLabel value="Faz festas em casa"/>              
+                        <img src="../../resources/imagem/yes.png" width="30" height="30" alt="yes" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.fazFestaCasa eq true}"/>
+                        <img src="../../resources/imagem/x.png" width="30" height="30" alt="x" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.fazFestaCasa eq false}"/>
+                    
+                  
+                    <h:outputLabel value="Serviços domésticos"/>             
+                        <img src="../../resources/imagem/yes.png" width="30" height="30" alt="yes" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.cozinhaLimpaCasa eq true}"/>
+                        <img src="../../resources/imagem/x.png" width="30" height="30" alt="x" jsf:rendered="#{vagaController.vagaselecionada.usuario.perfil.cozinhaLimpaCasa eq false}"/>
+                
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+        
+
+    </ui:define>
+</ui:composition>

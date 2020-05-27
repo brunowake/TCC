@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2017 18:21:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.LogOperacoes" table="log_operacoes" catalog="moradiadb">
+        <id name="idLogOperacoes" type="java.lang.Integer">
+            <column name="id_log_operacoes" />
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="anuncio" class="entity.Anuncio" fetch="select">
+            <column name="Anuncio_idAnuncio" not-null="true" />
+        </many-to-one>
+        <property name="tipoOperacao" type="string">
+            <column name="Tipo_Operacao" length="8" not-null="true" />
+        </property>
+        <property name="dataOperacao" type="date">
+            <column name="Data_Operacao" length="10" not-null="true" />
+        </property>
+        <property name="idUsuarioOperacao" type="int">
+            <column name="IdUsuarioOperacao" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

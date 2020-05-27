@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2017 18:21:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Perfil" table="perfil" catalog="moradiadb">
+        <id name="idPerfil" type="java.lang.Integer">
+            <column name="idPerfil" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="fuma" type="boolean">
+            <column name="Fuma" not-null="true" />
+        </property>
+        <property name="bebe" type="boolean">
+            <column name="Bebe" not-null="true" />
+        </property>
+        <property name="chegaMadrugada" type="boolean">
+            <column name="Chega_madrugada" not-null="true" />
+        </property>
+        <property name="solteiro" type="boolean">
+            <column name="solteiro" not-null="true" />
+        </property>
+        <property name="fazFestaCasa" type="boolean">
+            <column name="Faz_festa_casa" not-null="true" />
+        </property>
+        <property name="cozinhaLimpaCasa" type="boolean">
+            <column name="Cozinha_Limpa_casa" not-null="true" />
+        </property>
+        <set name="anuncios" table="anuncio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Perfil_idPerfil" not-null="true" />
+            </key>
+            <one-to-many class="entity.Anuncio" />
+        </set>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Perfil_idPerfil" not-null="true" />
+            </key>
+            <one-to-many class="entity.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

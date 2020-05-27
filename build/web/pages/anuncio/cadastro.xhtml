@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+                template="../../WEB-INF/templates/templates.xhtml">
+
+
+
+
+    <title>teste</title>
+    <h:outputStylesheet  name="../../resources/css/estilo.css"/>
+    <script>
+//<![CDATA[
+
+
+//]]>
+    </script>
+
+
+
+    <ui:define name="content" >
+        <div    style=" background: url(../..//resources/imagem/livro1.jpg) center center no-repeat ;  
+           
+           -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;">
+        <div class="usuarioAlinhamento">
+
+            <p class="tituloCadastro">Cadastro de usuário</p>
+
+           <h:form>
+                                <div class="modal-body">
+                                    
+                                    <h:panelGrid id="panel1" style="margin: auto;" columns="2">
+                                        <h:outputLabel value="Rua"/>
+                                        <h:inputText class="campos" pt:placeholder="Nome" value="#{anuncioController.anuncio.rua}"/>
+
+                                        <h:outputLabel value="Bairro"/>
+                                        <h:inputText class="campos" pt:placeholder="Email" value="#{anuncioController.anuncio.bairro}"/>
+
+                                        <h:outputLabel value="Estado"/>
+                                        <h:inputText class="campos" pt:placeholder="Senha" value="#{anuncioController.anuncio.estado}"/>
+
+
+                                        <h:outputLabel value="Cidade"/>
+                                        <h:inputText class="campos" pt:placeholder="Rg" value="#{anuncioController.anuncio.cidade}"/>
+
+                                        <h:outputLabel value="Descrição"/>
+                                        <h:inputText class="campos" pt:placeholder="Cpf" value="#{anuncioController.anuncio.descricao}"/>
+
+                                        <h:outputLabel value="Vagas"/>
+                                        <h:inputText class="campos" pt:placeholder="Telefone" value="#{anuncioController.anuncio.qtdVagas}"/>
+
+                                        <h:outputLabel value="Valor"/>
+                                        <h:inputText class="campos" pt:placeholder="Celular" value="#{anuncioController.anuncio.valorTotal}"/>
+
+                                         <h:outputLabel value="Bebe"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.bebe}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Fuma"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.fuma}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Chega de madrugada"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.chegaMadrugada}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Serviços domesticos"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.cozinhaLimpaCasa}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="FAz festas em casa"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.fazFestaCasa}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+                            <h:outputLabel value="Solteiro"/>
+                            <p:selectOneRadio  value="#{anuncioController.perfil.solteiro}">
+                                <f:selectItem itemValue="true" itemLabel="sim" />
+                                <f:selectItem itemValue="false" itemLabel="não" />
+
+                            </p:selectOneRadio>
+
+                                    </h:panelGrid>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+                                    <p:commandButton class="btn btn-default pull-left" value="Salvar" action="#{anuncioController.salvarAnuncio()}"/>
+                                </div></h:form>
+
+        </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+

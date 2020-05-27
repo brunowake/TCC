@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition
+    
+    xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+                template="WEB-INF/templates/templates.xhtml">
+    <script src="WEB-INF/../resources/js/jquery.js"></script>
+
+
+    <ui:define name="content">
+  
+        <p:graphicImage value="#{imagensController.imagem2}"/>
+
+        <p:galleria value="#{imagensController.listaImg}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+            <p:graphicImage value="#{imagensController.imagem2}"  alt="Image Description for #{image}" title="#{image}"/>
+</p:galleria>
+    </ui:define>
+</ui:composition>
+

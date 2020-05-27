@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+     template="WEB-INF/templates/templates.xhtml">
+      
+    <script src="WEB-INF/../resources/js/jquery.js"></script>
+    <script src=""></script>
+    <h:head>
+        <title>teste</title>
+
+        <script>
+            //<![CDATA[
+            function listar (){
+                
+                var len = #{usuarioController.lista.size()};
+                alert(len);
+                var i,nome,index;
+                alert(nome);
+                $("div.conteudo").html("");
+                
+                
+                for (i = 0, max = len; i < max; i++) {
+                    index = parseInt(i);
+                    
+                    nome =  "#{usuarioController.listar()}";
+                    alert(nome);
+                    	            	var lista = "<ul>"+
+                                                "<li>"+"Nome"+i+" : " +nome+"</li>"+
+
+                                                
+ 
+							"</ul>";
+							$("div.conteudo").append(lista);
+                    
+                }
+            }
+                    
+            ;
+            //]]>
+        </script>
+    </h:head>
+        <ui:define name="content">
+        <h:form enctype="multipart/form-data">
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nome: "/>
+                <h:inputText value="#{usuarioController.usuario.nome}"/>
+                
+                <h:outputLabel value="Email: "/>
+                <h:inputText value="#{usuarioController.usuario.email}"/>
+                
+                <h:outputLabel value="Senha: "/>
+                <h:inputText value="#{usuarioController.usuario.senha}"/>
+                
+                <h:outputLabel value="Rg: "/>
+                <h:inputText value="#{usuarioController.usuario.rg}"/>
+                
+                <h:outputLabel value="cpf: "/>
+                <h:inputText value="#{usuarioController.usuario.cpf}"/>
+                
+                <h:outputLabel value="Telefone: "/>
+                <h:inputText value="#{usuarioController.usuario.telefone}"/>
+                
+                <h:outputLabel value="Celular: "/>
+                <h:inputText value="#{usuarioController.usuario.celular}"/>
+                
+                <h:outputLabel value="Sexo: "/>
+                <h:selectOneRadio value="#{usuarioController.usuario.sexo}">
+                    <f:selectItem itemValue="m" itemLabel="Masculino" />
+                    <f:selectItem itemValue="f" itemLabel="Feminino" />
+
+                </h:selectOneRadio>
+                
+                <h:outputLabel value="Foto: "/>
+                <h:inputFile value="#{usuarioController.file}"/>
+                
+                <h:outputLabel value="Data: "/>
+                <p:calendar  value="#{usuarioController.usuario.dataNascimento}"/>
+                 <h:outputLabel value="bebe: "/>
+                <h:selectOneRadio value="#{usuarioController.perfil.bebe}">
+                    <f:selectItem itemValue="true" itemLabel="Color1 - Red" />
+                    <f:selectItem itemValue="false" itemLabel="Color1 - Green" />
+
+                </h:selectOneRadio>
+                
+                <h:outputLabel value="Chega de madrugada"/>
+                <h:selectOneRadio value="#{usuarioController.perfil.chegaMadrugada}">
+                    <f:selectItem itemValue="true" itemLabel="Color1 - Red" />
+                    <f:selectItem itemValue="false" itemLabel="Color1 - Green" />
+
+                </h:selectOneRadio>
+                
+                <h:outputLabel value="Limpa a casa: "/>
+                <h:selectOneRadio value="#{usuarioController.perfil.cozinhaLimpaCasa}">
+                    <f:selectItem itemValue="true" itemLabel="Color1 - Red" />
+                    <f:selectItem itemValue="false" itemLabel="Color1 - Green" />
+
+                </h:selectOneRadio>
+                
+                <h:outputLabel value="Faz festa em casa: "/>
+                <h:selectOneRadio value="#{usuarioController.perfil.fazFestaCasa}">
+                    <f:selectItem itemValue="true" itemLabel="Color1 - Red" />
+                    <f:selectItem itemValue="false" itemLabel="Color1 - Green" />
+
+                </h:selectOneRadio>
+                
+                <h:outputLabel value="Fuma: "/>
+                <h:selectOneRadio value="#{usuarioController.perfil.fuma}">
+                    <f:selectItem itemValue="true" itemLabel="Color1 - Red" />
+                    <f:selectItem itemValue="false" itemLabel="Color1 - Green" />
+
+                </h:selectOneRadio>
+                <h:outputLabel value="Solteiro: "/>
+                <h:selectOneRadio value="#{usuarioController.perfil.solteiro}">
+                    <f:selectItem itemValue="true" itemLabel="Color1 - Red" />
+                    <f:selectItem itemValue="false" itemLabel="Color1 - Green" />
+                </h:selectOneRadio>
+            </h:panelGrid>
+            <h:commandButton value="salvar" actionListener="#{usuarioController.salvarUsuario()}"/>
+          
+        </h:form>
+
+        
+  
+    <div class="conteudo" style=" background-color: blue; width: 500px; height: 500px;">
+        
+      
+        <h:dataTable id="idTabela" value="${usuarioController.lista}"  var="p">
+                 <h:column>
+                     <h:outputText value="${p.nome}"/>
+                 </h:column>
+
+                 <h:column>
+                     <h:outputText value="${p.senha}"/>
+                </h:column>
+                <h:column>
+                    <p:graphicImage style="width: 100px; height: 100px;" value="${usuarioController.imagem}"/>
+                </h:column>
+
+            </h:dataTable>
+        
+    </div>
+
+</ui:define>
+</ui:composition>
+        
+

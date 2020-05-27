@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+header {
+	padding: 10px 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+	height: 30px;
+	background-color:#545454;
+	color: #fff;
+	box-shadow: 0px 2px 2px #ccc;
+	align-text: center;
+}
+
+	
+#login-dialog {
+	width: 190px;
+	margin-left: 190px; 
+	margin-top: 100px;
+}
+
+.grid-login {
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	margin-top: 8px;
+	padding: 10px
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: 500;
+	padding: 0px;
+	margin: 0px
+}
+
+.ui-panelgrid td {
+	height: 34px
+}
+
+footer {
+	
+	margin-top: 150px;
+    margin-left: 5px;
+	margin-right: 5px;
+    position: absolute;
+   	padding: 5px 0px;
+	width: 98%;
+	height: 50px;
+	line-height: 48px;
+	background: #545454;
+	color: #ffffff;
+}
+
+#footer a {
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #ffffff;
+}

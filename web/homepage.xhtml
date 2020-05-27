@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+   >
+
+<head>
+  <meta charset="utf-8"/>
+  <title>Imperial Boootstrap Template</title>
+
+  <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+  <link href="favicon.ico" rel="shortcut icon"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet"/>
+
+  <!-- Bootstrap CSS File -->
+  <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Libraries CSS Files -->
+  <link href="resources/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="resources/css/animate.min.css" rel="stylesheet"/>
+
+  <!-- Main Stylesheet File -->
+  <link href="resources/css/style_1.css" rel="stylesheet"/>
+
+ 
+</head>
+
+<body>
+  <div id="preloader"></div>
+
+  <!--==========================
+  Hero Section
+  ============================-->
+  <h:form>
+  <section id="hero">
+    <div class="hero-container">
+      <div class="wow fadeIn">
+        <div class="hero-logo">
+            <img class="" src="resources/imagem/logo.png" alt="Imperial"/>
+        </div>
+
+        <h1>Bem vindo ao Moradia de Estudante</h1>
+        <h2>Por favor <span class="rotating">selecione o estado que deseja pesquisar imóveis</span></h2>
+        
+           <h:panelGrid columns="2" style="margin: auto;margin-bottom: 30px;">
+            <h:outputLabel value="UF:" style="margin-right: 20px; font-size: 50px;"/>
+            <h:selectOneMenu id="estado"  value="#{anuncioController.estadobusca}" immediate="true" style="width: 70px;height: 50px; font-size: 35px;">
+                                <f:selectItems value="#{anuncioController.listaestado}"
+                     var="item" 
+                     itemValue="#{item}" 
+                     itemLabel="#{item}"            />
+            </h:selectOneMenu> 
+        </h:panelGrid>
+        
+        <div class="actions">
+            
+            <a href="#about" class="btn-get-started" jsf:action="#{navega.voltarlogin()}">Login</a>
+            <a href="#services" class="btn-services" jsf:action="#{anuncioController.listarPorestado()}">Selecionar estado</a>
+           
+        </div>
+
+        </div>
+  
+      </div>
+   
+  </section>
+ </h:form>
+ 
+
+
+  <!-- Required JavaScript Libraries -->
+  <script src="resources/js/jquery.min.js"></script>
+  <script src="resources/js/bootstrap.min.js"></script>
+  <script src="resources/js/hoverIntent.js"></script>
+  <script src="resources/js/superfish.min.js"></script>
+  <script src="resources/js/morphext.min.js"></script>
+  <script src="resources/js/wow.min.js"></script>
+  <script src="resources/js/sticky.js"></script>
+  <script src="resources/js/easing.js"></script>
+
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="resources/js/custom.js"></script>
+
+  <script src="resources/js/contactform.js"></script>
+
+
+</body>
+
+</html>

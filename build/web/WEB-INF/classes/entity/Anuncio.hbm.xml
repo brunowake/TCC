@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2017 18:21:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Anuncio" table="anuncio" catalog="moradiadb">
+        <id name="idAnuncio" type="java.lang.Integer">
+            <column name="idAnuncio" />
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="perfil" class="entity.Perfil" fetch="select">
+            <column name="Perfil_idPerfil" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="entity.Usuario" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="nomeProprietario" type="string">
+            <column name="Nome_Proprietario" length="50" not-null="true" />
+        </property>
+        <property name="rua" type="string">
+            <column name="Rua" length="50" not-null="true" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="Bairro" length="50" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="2" not-null="true" />
+        </property>
+        <property name="cidade" type="string">
+            <column name="Cidade" length="50" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="Descricao" length="200" not-null="true" />
+        </property>
+        <property name="qtdVagas" type="int">
+            <column name="QTD_Vagas" not-null="true" />
+        </property>
+        <property name="valorTotal" type="double">
+            <column name="Valor_Total" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="hits" type="int">
+            <column name="Hits" not-null="true" />
+        </property>
+        <property name="status" type="boolean">
+            <column name="Status" not-null="true" />
+        </property>
+        <set name="imagenses" table="imagens" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Anuncio_idAnuncio" not-null="true" />
+            </key>
+            <one-to-many class="entity.Imagens" />
+        </set>
+        <set name="logOperacoeses" table="log_operacoes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Anuncio_idAnuncio" not-null="true" />
+            </key>
+            <one-to-many class="entity.LogOperacoes" />
+        </set>
+        <set name="anuncioVagas" table="anuncio_vaga" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Anuncio_idAnuncio" not-null="true" />
+            </key>
+            <one-to-many class="entity.AnuncioVaga" />
+        </set>
+    </class>
+</hibernate-mapping>

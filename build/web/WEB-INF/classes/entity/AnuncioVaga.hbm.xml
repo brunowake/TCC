@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/11/2017 18:21:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.AnuncioVaga" table="anuncio_vaga" catalog="moradiadb">
+        <id name="idAnuncioVaga" type="java.lang.Integer">
+            <column name="idAnuncio_Vaga" />
+            <generator class="identity"></generator>
+        </id>
+        <many-to-one name="anuncio" class="entity.Anuncio" cascade="all" fetch="select">
+            <column name="Anuncio_idAnuncio" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="entity.Usuario" cascade="all" fetch="select">
+            <column name="Usuario_idUsuario" not-null="true" />
+        </many-to-one>
+        <property name="aceite" type="boolean">
+            <column name="Aceite" not-null="true" />
+        </property>
+        <property name="obsAceite" type="string">
+            <column name="OBS_Aceite" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

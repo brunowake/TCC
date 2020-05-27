@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+                template="../../WEB-INF/templates/templates.xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+
+
+    <title>teste</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"/>
+    <style type="text/css">
+
+    </style>
+    <script>
+//<![CDATA[
+
+
+//]]>
+    </script>
+
+
+
+
+
+    <ui:define name="content">
+        <h:form id="Pesquisa" class="form-inline"  enctype="multipart/form-data">
+            <div class="panel-primary" >
+                <div class="panel panel-heading" style="background-color: black; font-size: 1.2em;">
+                    <h3 class="panel-title">Filtro Anúncios</h3>
+                    <div>
+                        <div class="panel-body">
+                            <div class="form-group" style="font-family: sans-serif; ">
+                                <div class="col-sm-6">
+                                    <h:outputLabel value="Bebe:"
+                                                   styleClass=" col-sm-4"/>
+
+                                    <h:selectOneRadio style="width: 200px;"  value="#{anuncioController.auxfriltro.bebe}">
+                                        <f:selectItem itemValue="true" itemLabel="sim" />
+                                        <f:selectItem itemValue="false" itemLabel="não" />
+                                        <f:selectItem itemValue="semfiltro" itemLabel="sem filtro" />
+
+                                    </h:selectOneRadio>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h:outputLabel value="Faz festa em casa: "
+                                                   styleClass="control-label col-sm-4"/>
+
+                                    <h:selectOneRadio style="width: 200px;" value="#{anuncioController.auxfriltro.fazFestaCasa}">
+                                        <f:selectItem itemValue="true" itemLabel="sim" />
+                                        <f:selectItem itemValue="false" itemLabel="não" />
+                                        <f:selectItem itemValue="semfiltro" itemLabel="sem filtro" />
+
+                                    </h:selectOneRadio>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <h:outputLabel value="Fuma:"
+                                                   styleClass="control-label col-sm-4"/>
+
+                                    <h:selectOneRadio style="width: 200px;"  value="#{anuncioController.auxfriltro.fuma}">
+                                        <f:selectItem itemValue="true" itemLabel="sim" />
+                                        <f:selectItem itemValue="false" itemLabel="não" />
+                                        <f:selectItem itemValue="semfiltro" itemLabel="sem filtro" />
+
+                                    </h:selectOneRadio>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <h:outputLabel value="Cidade:"
+                                                   for="cidade"
+                                                   styleClass=" col-sm-4"/>
+                                    <div class="col-sm-2">
+                                        <h:inputText id="cidade"
+                                                     value="#{anuncioController.cidade}"
+                                                     title="Cidade"
+                                                     styleClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <h:outputLabel value="Chega de madrugada: "
+                                                   styleClass="control-label col-sm-4"/>
+
+                                    <h:selectOneRadio style="width: 200px;"  value="#{anuncioController.auxfriltro.chegaMadrugada}">
+                                        <f:selectItem itemValue="true" itemLabel="sim" />
+                                        <f:selectItem itemValue="false" itemLabel="não" />
+                                        <f:selectItem itemValue="semfiltro" itemLabel="sem filtro" />
+
+                                    </h:selectOneRadio>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <h:outputLabel value="Bairro:"
+                                                   for="bairro"
+                                                   styleClass="control-label col-sm-4"/>
+                                    <div class="col-sm-2">
+                                        <h:inputText id="bairro"
+                                                     value="#{anuncioController.bairro}"
+                                                     title="Bairro"
+                                                     styleClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <h:outputLabel value="Solteiro: "
+                                                   styleClass="control-label col-sm-4"/>
+
+                                    <h:selectOneRadio  style="width: 200px;" value="#{anuncioController.auxfriltro.solteiro}">
+                                        <f:selectItem itemValue="true" itemLabel="sim" />
+                                        <f:selectItem itemValue="false" itemLabel="não" />
+                                        <f:selectItem itemValue="semfiltro" itemLabel="sem filtro" />
+
+                                    </h:selectOneRadio>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <h:outputLabel value="Valor"
+                                                   for="valor"
+                                                   styleClass="control-label col-sm-4"/>
+                                    <div class="col-sm-2">
+                                        <h:inputText id="valor"
+                                                     value="#{anuncioController.valor}"
+                                                     title="Valor"
+                                                     styleClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6" >
+
+                                    <h:outputLabel value="Serviços domésticos: "
+                                                   styleClass="control-label col-sm-4"/>
+
+                                    <h:selectOneRadio  style="width: 200px;" value="#{anuncioController.auxfriltro.cozinhaLimpaCasa}">
+                                        <f:selectItem itemValue="true" itemLabel="sim" />
+                                        <f:selectItem itemValue="false" itemLabel="não" />
+                                        <f:selectItem itemValue="semfiltro" itemLabel="sem filtro" />
+
+                                    </h:selectOneRadio>
+                                </div>
+
+                                <div class="col-sm-6" >
+
+                                    <h:outputLabel value="Estados: "
+                                                   styleClass="control-label col-sm-4"/>
+
+                                    <h:selectOneMenu id="estado"  value="#{anuncioController.estadobusca}" immediate="true" style="color:black; margin-top: 5px; height: 30px; width: 60px;">
+                                        <f:selectItems value="#{anuncioController.listaestado}"
+                                                       var="item" 
+                                                       itemValue="#{item}" 
+                                                       itemLabel="#{item}"            />
+                                    </h:selectOneMenu> 
+                                </div>
+                                <div class="form-inline col-sm-6">
+                                    <p:commandButton value="Pesquisa" action="#{anuncioController.montartimelinefiltro()}"
+                                                     update=" :lista"
+                                                     styleClass="btn btn-sucess" />
+                                    <p:commandButton value="Limpa Pesquisa" action="#{anuncioController.listarPorestado()}"
+                                                     update=" :lista"
+                                                     styleClass="btn btn-sucess" />
+                                </div>
+
+                            </div>
+
+                        </div>  
+
+                    </div>
+                </div>
+            </div>        
+        </h:form>
+        
+        
+        <h:form id="lista">
+            <p:dataScroller  value="#{anuncioController.lista}" var="anuncio" chunkSize="1" rowIndexVar="x">
+                
+                <f:facet name="loader">
+                    <p:commandButton type="button" value="More" icon="ui-icon-circle-triangle-s"/>
+                </f:facet>
+
+                <div class="container">
+                    <div class="card">
+                        <div class="container-fliud">
+                            <div class="wrapper row">
+                          
+                                <div class="preview col-md-6">
+
+                                    <div class="preview-pic tab-content">
+                                        <div class="tab-pane active" id="pic-1-#{anuncio.idAnuncio}"><p:graphicImage value="#{anuncioController.carregaimgmin(anuncio.idAnuncio,0)}"/></div>
+                                        <div class="tab-pane" id="pic-2-#{anuncio.idAnuncio}"><p:graphicImage value="#{anuncioController.carregaimgmin(anuncio.idAnuncio,1)}"/></div>
+                                        <div class="tab-pane" id="pic-3-#{anuncio.idAnuncio}"><p:graphicImage value="#{anuncioController.carregaimgmin(anuncio.idAnuncio,2)}"/></div>
+                                        <div class="tab-pane" id="pic-4-#{anuncio.idAnuncio}"><p:graphicImage value="#{anuncioController.carregaimgmin(anuncio.idAnuncio,3)}"/></div>
+                                        <div class="tab-pane" id="pic-5-#{anuncio.idAnuncio}"><p:graphicImage value="#{anuncioController.carregaimgmin(anuncio.idAnuncio,4)}"/></div>
+                                    </div>
+
+                                    <ul class="preview-thumbnail nav nav-tabs">
+                                        <li class="active"><a data-target="#pic-1-#{anuncio.idAnuncio}" data-toggle="tab"><p:graphicImage value="#{anuncioController.carregaimg(anuncio.idAnuncio,0)}"/></a></li>
+                                        <li><a data-target="#pic-2-#{anuncio.idAnuncio}" data-toggle="tab"><p:graphicImage value="#{anuncioController.carregaimg(anuncio.idAnuncio,1)}"/></a></li>
+                                        <li><a data-target="#pic-3-#{anuncio.idAnuncio}" data-toggle="tab"><p:graphicImage value="#{anuncioController.carregaimg(anuncio.idAnuncio,2)}"/></a></li>
+                                        <li><a data-target="#pic-4-#{anuncio.idAnuncio}" data-toggle="tab"><p:graphicImage value="#{anuncioController.carregaimg(anuncio.idAnuncio,3)}"/></a></li>
+                                        <li><a data-target="#pic-5-#{anuncio.idAnuncio}" data-toggle="tab"><p:graphicImage value="#{anuncioController.carregaimg(anuncio.idAnuncio,4)}"/></a></li>
+                                    </ul>        
+                                </div>
+          
+                                <div class="details col-md-6">
+                                    <h3 class="product-title">Proprietário: #{anuncio.nomeProprietario}</h3>
+                                    <div class="rating">
+                                        <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                        <span class="review-no">Visualizações: #{anuncio.hits}</span>
+                                        <p:outputLabel value="#{anuncio.idAnuncio}"/>
+                                    </div>
+                                    <p class="product-description">Descrição: #{anuncio.descricao}</p>
+                                    <h4 class="price">Valor do aluguel: <span>#{anuncio.valorTotal}</span></h4>
+                                    <h4 class="price">Vagas disponíveis: <span>#{anuncio.qtdVagas}</span></h4>
+                                    <p class="vote"><strong>Endereço: </strong> #{anuncio.rua}, #{anuncio.bairro} - #{anuncio.cidade}, #{anuncio.estado} </p>
+
+
+                                    <p class="product-description"><strong>Fumante:  </strong>  <p:outputLabel rendered="#{anuncio.perfil.fuma eq true}" value="sim"/> <p:outputLabel rendered="#{anuncio.perfil.fuma eq false}" value="não"/> </p>
+                                    <p class="product-description"><strong>Bebe:  </strong> <p:outputLabel rendered="#{anuncio.perfil.bebe eq true}" value="sim"/> <p:outputLabel rendered="#{anuncio.perfil.bebe eq false}" value="não"/> </p>
+                                    <p class="product-description"><strong>Serviços domésticos:  </strong> <p:outputLabel rendered="#{anuncio.perfil.cozinhaLimpaCasa eq true}" value="sim"/> <p:outputLabel rendered="#{anuncio.perfil.cozinhaLimpaCasa eq false}" value="não"/> </p>
+                                    <p class="product-description"><strong>Solteiro:  </strong> <p:outputLabel rendered="#{anuncio.perfil.solteiro eq true}" value="sim"/> <p:outputLabel rendered="#{anuncio.perfil.solteiro eq false}" value="não"/> </p>
+                                    <p class="product-description"><strong>Chega de madrugada:  </strong> <p:outputLabel rendered="#{anuncio.perfil.chegaMadrugada eq true}" value="sim"/> <p:outputLabel rendered="#{anuncio.perfil.chegaMadrugada eq false}" value="não"/> </p>
+                                    <p class="product-description"><strong>Faz festas em casa:  </strong> <p:outputLabel rendered="#{anuncio.perfil.fazFestaCasa eq true}" value="sim"/> <p:outputLabel rendered="#{anuncio.perfil.fazFestaCasa eq false}" value="não"/> </p>
+                                    <div class="action">
+
+                                        <!-- Modal --><h:form id="modalform">
+                                        <div class="modal fade" id="interesse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header modal-header-primary" style="border: solid;  text-align: center; background-color: black; color: white; border-color: white;">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        <h1>Confirmar interesse</h1>
+                                                    </div>
+                                                    <div  class="modal-body" style="text-align: center">
+                                                        <h2>Você realmente deseja demonstrar interesse neste imóvel ? </h2>
+
+                                                    </div>
+                                                    <div  class="modal-footer" style="width:150px;  margin: auto; ">
+                                                        
+                                                        <h:commandButton class="btn btn-default pull-left"  action="#{vagaController.salvarVAga()}" value="Sim" label="sim"/>
+                                                        <h:commandButton class="btn btn-default pull-left" pt:data-dismiss="modal"  value="Não" label="não"/>
+                                                        
+                                                       
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                        <!-- Modal -->
+ </h:form>
+                                      
+                                        <p:commandLink immediate="false" rendered="#{usuarioController.logado != null}" >
+                                            <f:setPropertyActionListener value="#{anuncio}"
+                                                                         target="#{vagaController.anuncioselecionado}" />
+                                            <button  class="add-to-cart btn btn-default" href="#interesse"  data-toggle="modal">
+                                                demonstrar interesse
+                                                
+                                            </button>
+                                            
+                                            
+                                            
+                                        </p:commandLink>
+                                        
+
+                                            <button  class="add-to-cart btn btn-default"  rendered="#{usuarioController.logado == null}"  jsf:action="#{navega.voltarlogin()}">
+                                                demonstrar interesse
+                                                
+                                            </button>
+                                            
+                                            
+                                            
+                                       
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h:outputLabel value="#{lista.nomeProprietario}" >
+                    <f:param name="nome" value="#{lista.nomeProprietario}" />
+                </h:outputLabel> 
+
+            </p:dataScroller>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+
