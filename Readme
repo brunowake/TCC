@@ -1,0 +1,8 @@
+Esse projeto foi realizado como TCC do curso de sistemas para internet pelo IFSP - campus birigui.
+Nesse projeto foi utilizado o mysql como banco de dados e hibernate como ferramenta de persistência.
+Para o front-end foi utilizado JSF com Primefaces como base e para a renderização da time line foi utilizado um webservice 
+que fornece um arquivo Json convertido por javascript em hltml.
+
+O projeto apresenta erros de execução por incompatibilidade de bibliotecas, na época do desenvolvimento foram utilizadas
+bibliotecas online que hoje se encontrar fora de serviço, porém analisando o código fonte é possível ter uma ideia de como
+o projeto foi desenvolvido. 
